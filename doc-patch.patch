@@ -1,0 +1,62 @@
+From 294af8952db7b7abdeb5db301e7237c41161b765 Mon Sep 17 00:00:00 2001
+From: Dermot Paikkos <dermot@sciencephoto.co.uk>
+Date: Wed, 29 Jun 2016 09:41:50 +0000
+Subject: [PATCH] Documentaion patch
+
+Have the renderx examples show the attribute and the value single quoted
+and without fat commas.
+---
+ lib/HTML/FormHandler/Manual/Reference.pod |    2 +-
+ lib/HTML/FormHandler/Manual/Rendering.pod |    7 ++++---
+ 2 files changed, 5 insertions(+), 4 deletions(-)
+
+diff --git a/lib/HTML/FormHandler/Manual/Reference.pod b/lib/HTML/FormHandler/Manual/Reference.pod
+index f87740a..e9089a4 100644
+--- a/lib/HTML/FormHandler/Manual/Reference.pod
++++ b/lib/HTML/FormHandler/Manual/Reference.pod
+@@ -193,7 +193,7 @@ L<HTML::FormHandler::Render::Simple>, and in the individual field classes.
+    size            Text & select fields.
+ 
+    render          Widget method to render the field ($field->render)
+-   renderx         "" plus set attributes ($field->render( element_class => '...' ))
++   renderx         "" plus set attributes ($field->render( 'element_class', '...' ))
+    render_element  Widget method to render unwrapped field ($field->render_element)
+    render_elementx "" plus set attributes ($field->render_elementx( element_class => '...'))
+ 
+diff --git a/lib/HTML/FormHandler/Manual/Rendering.pod b/lib/HTML/FormHandler/Manual/Rendering.pod
+index 12c888e..d454c3e 100644
+--- a/lib/HTML/FormHandler/Manual/Rendering.pod
++++ b/lib/HTML/FormHandler/Manual/Rendering.pod
+@@ -87,9 +87,10 @@ each of the fields individually, using 'render' or 'renderx':
+      <fieldset><legend>My Foo</legend>
+      [% form.field('foo').render %]
+      </fieldset>
+-     [% form.field('bar').renderx(element_class => 'cb33')  %]
++     [% form.field('bar').renderx('element_class', 'cb33')  %]
+      [% form.field('save').render %]
+      </form>
++It is advisable to quote the renderx attribute and value and to avoid fat commas (=>).
+ 
+ If you don't want the wrappers, use a widget_wrapper of 'None'.
+ 
+@@ -102,7 +103,7 @@ embedded:
+     [% form.field('foo').render %]
+     </div>
+     <div class="another_class">
+-    [% form.field('bar').renderx(element_class => 'cb33')  %]
++    [% form.field('bar').renderx('element_class', 'cb33')  %]
+     </div>
+ 
+ You can also use the 'render_element' or 'render_elementx' methodx, if you want to leave the
+@@ -133,7 +134,7 @@ If you take all the defaults, you can simply render a form with C<< $form->rende
+ 
+     [% form.render %]
+     or
+-    [% form.renderx( form_element_class => ['xxx'] ) %]
++    [% form.renderx( 'form_element_class',  ['xxx'] ) %]
+ 
+ This uses the L<HTML::FormHandler::Widget::Form::Simple> role, which is applied to
+ the form by default. You can use a different form rendering role by including
+-- 
+1.7.1
+
